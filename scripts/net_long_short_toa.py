@@ -16,15 +16,15 @@ var_lw = "avg_tnlwrf"
 var_sw = "avg_tnswrf"
 lat_name = "latitude"
 lon_name = "longitude"
-title_sw = "Annual mean net incoming solar radiation at TOA (1991-2020)"
-title_lw = "Net annual mean outgoing longwave radiation at TOA (1991-2020)"
+title_sw = "Net incoming solar radiation at TOA from ERA5 (1991-2020)"
+title_lw = "Net outgoing longwave radiation at TOA from ERA5 (1991-2020)"
 title_cbar = "Radiation Flux (W m$^{-2}$)"
 
 # SHORTWAVE
 ds_sw = xr.open_dataset(nc_sw)
 da_sw = ds_sw[var_sw].isel(valid_time=0)
 
-# Colorbar
+# Range
 vmin_sw = float(da_sw.min())
 vmax_sw = float(da_sw.max())
 start_sw = int(np.floor(vmin_sw / 20.0)*20.0)
@@ -45,14 +45,14 @@ im = ax.contourf(
     norm=norm
 )
 
-plt.title(title_sw, fontsize=15, fontweight="bold", pad=15)
+plt.title(title_sw, fontsize=16, fontweight="bold", pad=16)
 
 # Map
 ax.coastlines(linewidth=0.9)
 gl = ax.gridlines(linewidth=0.5, color="k", alpha=0.3, linestyle="--")
 
 # Colorbar
-cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.8, aspect=30)
+cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.9, aspect=30)
 cb.set_label(title_cbar, fontsize=12, fontweight="bold")
 cb.set_ticks(ticks_sw)
 cb.ax.set_xticklabels([f"{t:.0f}" for t in ticks_sw])
@@ -64,7 +64,7 @@ plt.close()
 ds_lw = xr.open_dataset(nc_lw)
 da_lw = ds_lw[var_lw].isel(valid_time=0)*(-1)
 
-# Colorbar
+# Range
 vmin_lw = float(da_lw.min())
 vmax_lw = float(da_lw.max())
 start_lw = int(np.floor(vmin_lw / 20.0)*20.0)
@@ -84,14 +84,14 @@ im = ax.contourf(
     norm=norm
 )
 
-plt.title(title_lw, fontsize=15, fontweight="bold", pad=15)
+plt.title(title_lw, fontsize=16, fontweight="bold", pad=16)
 
 # Map
 ax.coastlines(linewidth=0.9)
 gl = ax.gridlines(linewidth=0.5, color="k", alpha=0.3, linestyle="--")
 
 # Colorbar
-cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.8, aspect=30)
+cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.9, aspect=30)
 cb.set_label(title_cbar, fontsize=12, fontweight="bold")
 cb.set_ticks(ticks_lw)
 cb.ax.set_xlim(start_lw, end_lw)
