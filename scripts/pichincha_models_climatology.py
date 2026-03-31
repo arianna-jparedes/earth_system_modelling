@@ -16,6 +16,8 @@ mri_ssp = xr.open_dataset(data_dir / "mri_ssp370_box.nc")
 nor = xr.open_dataset(data_dir / "nor_monthly_box.nc")
 nor_ssp = xr.open_dataset(data_dir / "nor_ssp370_box.nc")
 
+
+# Metadata
 months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
@@ -73,6 +75,7 @@ for var in variables:
     margin = (combined.max() - combined.min()) * 0.05
     y_limits[var] = (combined.min() - margin, combined.max() + margin)
 
+# Graphs Historicals
 for var, meta in variables.items():
     fig, ax = plt.subplots(figsize=(10, 8), dpi=200)
 
@@ -106,6 +109,7 @@ miroc6.close()
 mri.close()
 nor.close()
 
+# Graphs Projections
 for var, meta in variables.items():
     fig, ax = plt.subplots(figsize=(10, 8), dpi=200)
 

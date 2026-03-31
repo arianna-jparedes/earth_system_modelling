@@ -41,14 +41,14 @@ for var, meta in variables.items():
     # Load all datasets
     datasets = [(xr.open_dataset(f), label) for f, label in models]
 
-    # Shared colorbar range: mean of maxima and mean of minima
+    # Shared colorbar range (Predefine)
     start = meta["vmin"]
     end = meta["vmax"]
     step = meta["step"]
     levels = np.arange(start, end + step, step)
     ticks = np.arange(start, end + step, step*2)
     
-    # One figure per variable, 3 panels side by side
+    # Graph
     fig, axes = plt.subplots(1, 3, figsize=(24, 8), dpi=200, subplot_kw={"projection": ccrs.Mollweide(central_longitude=180)})
 
     for ax, (ds, label) in zip(axes, datasets):
@@ -59,12 +59,12 @@ for var, meta in variables.items():
             levels=levels, transform=ccrs.PlateCarree(),
             cmap=meta["cmap"], extend="both",
         )
-        # Title: variable description + model label
+        
         ax.set_title(f"{label} - Historical (1979-2014)", fontsize=20, fontweight="bold", pad=10)
         ax.coastlines(linewidth=1.0)
         ax.gridlines(linewidth=0.5, color="k", alpha=0.3, linestyle="--")
 
-        # Individual colorbar under each panel
+        # Colorbar
         cb = fig.colorbar(im, ax=ax, orientation="horizontal", pad=0.04, shrink=0.85, aspect=28)
         cb.set_label(meta["title_cbar"], fontsize=16, fontweight="bold")
         cb.set_ticks(ticks)

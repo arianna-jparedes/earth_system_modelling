@@ -65,7 +65,7 @@ MODIS_COLORS = {
 
 proj = ccrs.PlateCarree()
 
-# Province borders (Natural Earth 10m)
+# Province borders (10m)
 provinces = cfeature.NaturalEarthFeature(
     category="cultural",
     name="admin_1_states_provinces",
@@ -75,6 +75,7 @@ provinces = cfeature.NaturalEarthFeature(
     linewidth=0.7,
 )
 
+# Map
 def add_map_features(ax):
     ax.set_extent([LON_W, LON_E, LAT_S, LAT_N], crs=proj)
     ax.add_feature(cfeature.COASTLINE, linewidth=0.8)
@@ -84,11 +85,12 @@ def add_map_features(ax):
     gl.top_labels = False
     gl.right_labels = False
 
-# ELEVATION
+# Elevation 
 with rasterio.open(srtm_file) as src:
     elev = src.read(1).astype(float)
     bounds = src.bounds
 
+# Mask
 elev = np.where(elev < -1000, np.nan, elev)
 
 vmin = 0
@@ -96,6 +98,7 @@ vmax = np.nanmax(elev)
 ticks_elev = np.arange(int(np.floor(vmin / 500) * 500),
                         int(np.ceil(vmax / 500) * 500) + 500, 500)
 
+# Graph
 fig = plt.figure(figsize=(10, 8), dpi=200)
 ax = plt.axes(projection=proj)
 
@@ -112,6 +115,7 @@ im = ax.imshow(
 plt.title(title_elev, fontsize=14, fontweight="bold", pad=12)
 add_map_features(ax)
 
+# Colorbar
 cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.08, shrink=0.8, aspect=40)
 cb.set_label(title_cbar_elev, fontsize=11, fontweight="bold")
 cb.set_ticks(ticks_elev)
@@ -120,12 +124,12 @@ cb.ax.set_xticklabels([f"{t:.0f}" for t in ticks_elev])
 plt.savefig(png_elev, bbox_inches="tight")
 plt.close()
 
-# MODIS LAND COVER
+# Land Cover
 with rasterio.open(modis_file) as src:
     lc = src.read(1)
     bounds_lc = src.bounds
 
-# Mask nodata
+# Mask
 lc = np.where(lc == 255, 0, lc)
 
 unique_classes = np.unique(lc[lc > 0])
@@ -146,6 +150,7 @@ patches = [
     for c in unique_classes
 ]
 
+# Graph
 fig, ax = plt.subplots(figsize=(10, 6), dpi=200,
                        subplot_kw={"projection": proj})
 
