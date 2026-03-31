@@ -20,24 +20,24 @@ G = Rn - SH - LE
 months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 x = np.arange(12)
 
-plt.figure(figsize=(8,8), dpi=200)
+plt.figure(figsize=(10,8), dpi=200)
 plt.plot(x, Rn.values, color="black", linewidth=2.0)
 plt.plot(x, SH.values, color="red", linewidth=2.0, linestyle="--")
 plt.plot(x, LE.values, color="royalblue", linewidth=2.0, linestyle=":")
 plt.plot(x, G.values, color="orange", linewidth=2.0, linestyle="-.")
 
-plt.xticks(x, months, fontsize=14)
-plt.yticks(fontsize=14)
-plt.ylabel(r"W m$^{-2}$", fontsize=14, fontweight="bold")
-plt.xlabel("Months", fontsize=14, fontweight="bold")
+plt.xticks(x, months, fontsize=16)
+plt.yticks(fontsize=16)
+plt.ylabel(r"W m$^{-2}$", fontsize=16, fontweight="bold")
+plt.xlabel("Months", fontsize=16, fontweight="bold")
 plt.title("Energy Balance from ERA5 (Pichincha-Ecuador)",
-          fontsize=16, fontweight="bold", pad=15)
+          fontsize=18, fontweight="bold", pad=15)
 
 # Inline labels
-plt.text(6, Rn.values[6]+5, "R", color="black", fontsize=14)
-plt.text(5, SH.values[5]+5, "SH", color="red", fontsize=14)
-plt.text(4, LE.values[4]+5, "LE", color="royalblue", fontsize=14)
-plt.text(6, G.values[6]+5, "G", color="orange", fontsize=14)
+plt.text(6, Rn.values[6]+5, "R", color="black", fontsize=16)
+plt.text(5, SH.values[5]+5, "SH", color="red", fontsize=16)
+plt.text(4, LE.values[4]+5, "LE", color="royalblue", fontsize=16)
+plt.text(6, G.values[6]+5, "G", color="orange", fontsize=16)
 
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
