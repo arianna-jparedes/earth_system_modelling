@@ -48,7 +48,7 @@ im = ax.contourf(
     cmap="RdBu_r", norm=norm_sh
 )
 
-plt.title(title_sh, fontsize=16, fontweight="bold", pad=16)
+plt.title(title_sh, fontsize=18, fontweight="bold", pad=16)
 
 # Map
 ax.coastlines(linewidth=0.9)
@@ -56,7 +56,7 @@ ax.gridlines(linewidth=0.5, color="k", alpha=0.3, linestyle="--")
 
 # Colorbar
 cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.9, aspect=30)
-cb.set_label(title_cbar, fontsize=12, fontweight="bold")
+cb.set_label(title_cbar, fontsize=16, fontweight="bold")
 cb.set_ticks(ticks_sh)
 cb.ax.set_xticklabels([f"{t:.0f}" for t in ticks_sh])
 
@@ -85,7 +85,7 @@ im = ax.contourf(
     cmap="RdBu_r", extend='max', norm=norm_lh
 )
 
-plt.title(title_lh, fontsize=16, fontweight="bold", pad=16)
+plt.title(title_lh, fontsize=18, fontweight="bold", pad=16)
 
 # Map
 ax.coastlines(linewidth=0.9)
@@ -93,7 +93,7 @@ ax.gridlines(linewidth=0.5, color="k", alpha=0.3, linestyle="--")
 
 # Colorbar
 cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.9, aspect=30)
-cb.set_label(title_cbar, fontsize=12, fontweight="bold")
+cb.set_label(title_cbar, fontsize=16, fontweight="bold")
 cb.set_ticks(ticks_lh)
 cb.ax.set_xticklabels([f"{t:.0f}" for t in ticks_lh])
 
@@ -123,7 +123,7 @@ im = ax.contourf(
     cmap="RdBu_r", norm=norm_strg
 )
 
-plt.title(title_strg, fontsize=16, fontweight="bold", pad=16)
+plt.title(title_strg, fontsize=18, fontweight="bold", pad=16)
 
 # Map
 ax.coastlines(linewidth=0.9)
@@ -131,7 +131,7 @@ ax.gridlines(linewidth=0.5, color="k", alpha=0.3, linestyle="--")
 
 # Colorbar
 cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.9, aspect=30)
-cb.set_label(title_cbar, fontsize=12, fontweight="bold")
+cb.set_label(title_cbar, fontsize=16, fontweight="bold")
 cb.set_ticks(ticks_strg)
 cb.ax.set_xticklabels([f"{t:.0f}" for t in ticks_strg])
 

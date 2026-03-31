@@ -30,7 +30,7 @@ vmax_sw = float(da_sw.max())
 start_sw = int(np.floor(vmin_sw / 20.0)*20.0)
 end_sw = int(np.ceil(vmax_sw / 20.0)*20.0)
 levels_sw = np.arange(start_sw, end_sw+20.0, 20)
-ticks_sw = np.arange(start_sw+20.0, end_sw, 20)
+ticks_sw = np.arange(start_sw+20.0, end_sw, 40)
 norm = mcolors.Normalize(vmin=vmin_sw, vmax=vmax_sw)
 
 # Graph
@@ -45,7 +45,7 @@ im = ax.contourf(
     norm=norm
 )
 
-plt.title(title_sw, fontsize=16, fontweight="bold", pad=16)
+plt.title(title_sw, fontsize=18, fontweight="bold", pad=16)
 
 # Map
 ax.coastlines(linewidth=0.9)
@@ -53,9 +53,10 @@ gl = ax.gridlines(linewidth=0.5, color="k", alpha=0.3, linestyle="--")
 
 # Colorbar
 cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.9, aspect=30)
-cb.set_label(title_cbar, fontsize=12, fontweight="bold")
+cb.set_label(title_cbar, fontsize=16, fontweight="bold")
 cb.set_ticks(ticks_sw)
 cb.ax.set_xticklabels([f"{t:.0f}" for t in ticks_sw])
+cb.ax.tick_params(labelsize=15)
 
 plt.savefig(png_sw, bbox_inches="tight")
 plt.close()
@@ -84,7 +85,7 @@ im = ax.contourf(
     norm=norm
 )
 
-plt.title(title_lw, fontsize=16, fontweight="bold", pad=16)
+plt.title(title_lw, fontsize=18, fontweight="bold", pad=16)
 
 # Map
 ax.coastlines(linewidth=0.9)
@@ -92,10 +93,11 @@ gl = ax.gridlines(linewidth=0.5, color="k", alpha=0.3, linestyle="--")
 
 # Colorbar
 cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.9, aspect=30)
-cb.set_label(title_cbar, fontsize=12, fontweight="bold")
+cb.set_label(title_cbar, fontsize=16, fontweight="bold")
 cb.set_ticks(ticks_lw)
 cb.ax.set_xlim(start_lw, end_lw)
 cb.ax.set_xticklabels([f"{t:.0f}" for t in ticks_lw])
+cb.ax.tick_params(labelsize=15)
 
 plt.savefig(png_lw, bbox_inches="tight")
 plt.close()
