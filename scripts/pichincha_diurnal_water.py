@@ -64,17 +64,17 @@ for pair in pairs:
         ax1.plot(x, e, color="orange", linestyle=":", linewidth=2)
 
         ax1.set_xticks(x[::3])
-        ax1.set_xticklabels([f"{h:02d}h" for h in x[::3]], fontsize=16)
-        ax1.tick_params(axis="y", labelsize=14)
-        ax1.set_xlabel("Hour (local time, UTC-5)", fontweight="bold", fontsize=16)
-        ax1.set_ylabel("mm day$^{-1}$", fontweight="bold", fontsize=16)
+        ax1.set_xticklabels([f"{h:02d}h" for h in x[::3]], fontsize=18)
+        ax1.tick_params(axis="y", labelsize=18)
+        ax1.set_xlabel("Hour (local time, UTC-5)", fontweight="bold", fontsize=18)
+        ax1.set_ylabel("mm day$^{-1}$", fontweight="bold", fontsize=18)
         ax1.set_ylim(ymin_flux, ymax_flux)
 
         # Right y-axis for temperature
         ax2 = ax1.twinx()
         ax2.plot(x, t2m, color="darkred", linewidth=2)
-        ax2.set_ylabel("Temperature (°C)", fontweight="bold", fontsize=16, color="darkred")
-        ax2.tick_params(axis="y", labelcolor="darkred", labelsize=16)
+        ax2.set_ylabel("Temperature (°C)", fontweight="bold", fontsize=18, color="darkred")
+        ax2.tick_params(axis="y", labelcolor="darkred", labelsize=18)
         ax2.set_ylim(ymin_t2m, ymax_t2m)
 
         ax1.yaxis.set_major_locator(LinearLocator(6))
@@ -83,14 +83,14 @@ for pair in pairs:
         ax2.yaxis.set_major_formatter(plt.FormatStrFormatter("%.1f"))
 
         # Inline labels
-        ax1.text(x[21], pev[18], "PET", color="black", va="center", fontsize=16)
-        ax1.text(x[11], tp[12], "P", color="royalblue", va="center", fontsize=16)
-        ax1.text(x[15], e[16], "E", color="orange", va="center", fontsize=16)
-        ax2.text(x[21], t2m[20], "T2M", color="darkred", va="center", fontsize=16)
+        ax1.text(x[21], pev[18], "PET", color="black", va="center", fontsize=18)
+        ax1.text(x[11], tp[12], "P", color="royalblue", va="center", fontsize=18)
+        ax1.text(x[15], e[16], "E", color="orange", va="center", fontsize=18)
+        ax2.text(x[21], t2m[20], "T2M", color="darkred", va="center", fontsize=18)
 
         plt.title(f"Diurnal Water Cycle from ERA5 ({labels[tag]})\n"
                   "Pichincha - Ecuador",
-                  fontsize=18, fontweight="bold", pad=15)
+                  fontsize=20, fontweight="bold", pad=15)
         ax1.grid(True, alpha=0.3)
         plt.tight_layout()
         plt.savefig(f"{graphs_dir}/diurnal_water_cycle_{tag}.png", dpi=200)

@@ -57,19 +57,19 @@ for pair in pairs:
         plt.plot(x, LE, color="royalblue", linewidth=2.5, linestyle=":")
         plt.plot(x, G,  color="orange", linewidth=2.5, linestyle="-.")
  
-        plt.xticks(x[::3], [f"{h:02d}" for h in x[::3]], fontsize=16)
-        plt.yticks(fontsize=16)
+        plt.xticks(x[::3], [f"{h:02d}" for h in x[::3]], fontsize=18)
+        plt.yticks(fontsize=18)
         plt.ylim(ymin, ymax)
-        plt.ylabel(r"W m$^{-2}$", fontsize=14, fontweight="bold")
-        plt.xlabel("Hour (local time, UTC-5)", fontsize=16, fontweight="bold")
+        plt.ylabel(r"W m$^{-2}$", fontsize=18, fontweight="bold")
+        plt.xlabel("Hour (local time, UTC-5)", fontsize=18, fontweight="bold")
         plt.title(f"Diurnal Energy Budget from ERA5 ({labels[tag]})\n"
-                  "Pichincha - Ecuador", fontsize=18, fontweight="bold", pad=15)
+                  "Pichincha - Ecuador", fontsize=20, fontweight="bold", pad=15)
  
         # Inline labels
-        plt.text(x[9], Rn[10], "Rn", color="black", fontsize=16)
-        plt.text(x[13], SH[12], "SH", color="red", fontsize=16)
-        plt.text(x[9], LE[10], "LE", color="royalblue", fontsize=16)
-        plt.text(x[12], G[13], "G", color="orange", fontsize=16)
+        plt.text(x[9], Rn[10], "Rn", color="black", fontsize=18)
+        plt.text(x[13], SH[12], "SH", color="red", fontsize=18)
+        plt.text(x[9], LE[10], "LE", color="royalblue", fontsize=18)
+        plt.text(x[12], G[13], "G", color="orange", fontsize=18)
  
         plt.axhline(0, color="gray", linewidth=0.8, linestyle="--")
         plt.grid(True, alpha=0.3)
