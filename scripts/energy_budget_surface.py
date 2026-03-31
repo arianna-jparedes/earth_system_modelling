@@ -59,6 +59,7 @@ cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.9, asp
 cb.set_label(title_cbar, fontsize=16, fontweight="bold")
 cb.set_ticks(ticks_sh)
 cb.ax.set_xticklabels([f"{t:.0f}" for t in ticks_sh])
+cb.ax.tick_params(labelsize=15)
 
 plt.savefig(png_sh, bbox_inches="tight")
 plt.close()
@@ -67,13 +68,12 @@ plt.close()
 da_lh = ds[var_lh].isel(valid_time=0) * (-1)
 
 # Range
-vmin_lh = float(da_lh.min())
+vmin_lh = 0.0
 vmax_lh = 220.0
 start_lh = int(np.floor(vmin_lh / 20.0) * 20)
 end_lh = int(np.ceil(vmax_lh  / 20.0) * 20)
 levels_lh = np.arange(start_lh, end_lh + 20, 20)
 ticks_lh = np.arange(start_lh + 20, end_lh, 20)
-norm_lh = mcolors.TwoSlopeNorm(vmin=start_lh, vcenter=0, vmax=end_lh)
 
 # Graph
 fig = plt.figure(figsize=(12, 8), dpi=200)
@@ -82,7 +82,7 @@ ax = plt.axes(projection=ccrs.Mollweide(central_longitude=180))
 im = ax.contourf(
     ds[lon_name], ds[lat_name], da_lh,
     levels=levels_lh, transform=ccrs.PlateCarree(),
-    cmap="RdBu_r", extend='max', norm=norm_lh
+    cmap="turbo", extend='both'
 )
 
 plt.title(title_lh, fontsize=18, fontweight="bold", pad=16)
@@ -96,17 +96,18 @@ cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.9, asp
 cb.set_label(title_cbar, fontsize=16, fontweight="bold")
 cb.set_ticks(ticks_lh)
 cb.ax.set_xticklabels([f"{t:.0f}" for t in ticks_lh])
+cb.ax.tick_params(labelsize=15)
 
 plt.savefig(png_lh, bbox_inches="tight")
 plt.close()
 
 # HEAT STORAGE (Rnet - SH - LH)
 da_rnet = ds[var_sw].isel(valid_time=0) + ds[var_lw].isel(valid_time=0)
-da_strg = da_rnet + ds[var_sh].isel(valid_time=0) + ds[var_lh].isel(valid_time=0)
+da_strg = da_rnet - da_sh - da_lh
 
 # Range
-vmin_strg = float(da_strg.min())
-vmax_strg = float(da_strg.max())
+vmin_strg = -200.0
+vmax_strg = 200.0
 start_strg = int(np.floor(vmin_strg / 40.0) * 40)
 end_strg = int(np.ceil(vmax_strg  / 40.0) * 40)
 levels_strg = np.arange(start_strg, end_strg + 40, 40)
@@ -120,7 +121,8 @@ ax = plt.axes(projection=ccrs.Mollweide(central_longitude=180))
 im = ax.contourf(
     ds[lon_name], ds[lat_name], da_strg,
     levels=levels_strg, transform=ccrs.PlateCarree(),
-    cmap="RdBu_r", norm=norm_strg
+    cmap="RdBu_r", norm=norm_strg,
+    extend="both",
 )
 
 plt.title(title_strg, fontsize=18, fontweight="bold", pad=16)
@@ -134,6 +136,7 @@ cb = plt.colorbar(im, ax=ax, orientation="horizontal", pad=0.05, shrink=0.9, asp
 cb.set_label(title_cbar, fontsize=16, fontweight="bold")
 cb.set_ticks(ticks_strg)
 cb.ax.set_xticklabels([f"{t:.0f}" for t in ticks_strg])
+cb.ax.tick_params(labelsize=15)
 
 plt.savefig(png_strg, bbox_inches="tight")
 plt.close()
