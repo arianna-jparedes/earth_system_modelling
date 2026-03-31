@@ -67,10 +67,10 @@ for var, meta in variables.items():
 
         # Graphs
         cb = fig.colorbar(im, ax=ax, orientation="horizontal", pad=0.04, shrink=0.85, aspect=28)
-        cb.set_label(meta["title_cbar"], fontsize=16, fontweight="bold")
+        cb.set_label(meta["title_cbar"], fontsize=18, fontweight="bold")
         cb.set_ticks(ticks)
-        cb.ax.set_xticklabels([f"{t:.2g}" for t in ticks], fontsize=16)
-        cb.ax.tick_params(labelsize=16)
+        cb.ax.set_xticklabels([f"{t:.2g}" for t in ticks], fontsize=18)
+        cb.ax.tick_params(labelsize=18)
 
     plt.tight_layout()
     plt.savefig(meta["out"], bbox_inches="tight")

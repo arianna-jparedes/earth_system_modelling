@@ -21,13 +21,13 @@ variables = {
         "title_cbar": "Surface Air Temperature (K)",
         "cmap": "OrRd",
         "out": out_dir / "mean_t2m.png",
-        "vmin": 220, "vmax": 300, "step": 10,
+        "vmin": 240, "vmax": 300, "step": 10,
     },
     "tp": {
         "title_cbar": "Precipitation (mm day⁻¹)",
         "cmap": "PuBuGn",
         "out": out_dir / "mean_tp.png",
-        "vmin": 0, "vmax": 20, "step": 2,
+        "vmin": 0, "vmax": 16, "step": 2,
     },
     "e": {
         "title_cbar": "Evapotranspiration (mm day⁻¹)",
@@ -66,9 +66,9 @@ for var, meta in variables.items():
 
         # Colorbar
         cb = fig.colorbar(im, ax=ax, orientation="horizontal", pad=0.04, shrink=0.85, aspect=28)
-        cb.set_label(meta["title_cbar"], fontsize=16, fontweight="bold")
+        cb.set_label(meta["title_cbar"], fontsize=18, fontweight="bold")
         cb.set_ticks(ticks)
-        cb.ax.tick_params(labelsize=16)
+        cb.ax.tick_params(labelsize=18)
 
     plt.tight_layout()
     plt.savefig(meta["out"], bbox_inches="tight")
