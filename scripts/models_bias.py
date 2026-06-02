@@ -21,19 +21,19 @@ variables = {
         "title_cbar": "Bias Surface Air Temperature (K)",
         "cmap": "RdBu_r",
         "out": out_dir / "bias_t2m.png",
-        "vmin": -8, "vmax": 8, "step": 2,
+        "vmin": -2, "vmax": 2, "step": 0.25,
     },
     "tp": {
         "title_cbar": "Bias Precipitation (mm day⁻¹)",
         "cmap": "BrBG",
         "out": out_dir / "bias_tp.png",
-        "vmin": -8, "vmax": 8, "step": 2,
+        "vmin": -3, "vmax": 3, "step": 0.5,
     },
     "e": {
         "title_cbar": "Bias Evapotranspiration (mm day⁻¹)",
         "cmap": "PiYG",
         "out": out_dir / "bias_e.png",
-        "vmin": -4, "vmax": 4, "step": 1,
+        "vmin": -1, "vmax": 1, "step": 0.2,
     },
 }
 
